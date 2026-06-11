@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-cream text-gray-900;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .btn-gold {
+    @apply bg-gold text-white uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gold-dark transition-colors duration-200;
+  }
+
+  .btn-outline {
+    @apply border border-gray-800 text-gray-800 uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gray-100 transition-colors duration-200;
+  }
+
+  .label-gold {
+    @apply text-gold uppercase tracking-widest2 text-xs font-medium;
+  }
+
+  .section-heading {
+    @apply font-serif text-4xl leading-snug text-gray-900;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
