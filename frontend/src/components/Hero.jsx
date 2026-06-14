@@ -27,7 +27,7 @@ export default function Hero() {
       <div className="lg:flex-1 min-h-[50vh] lg:min-h-full relative overflow-hidden">
         <div className="absolute inset-0 bg-[#E8DDD0]" />
         <img
-          src="/images/hero-living-room.png"
+          src="/images/hero-living-room.webp"
           alt="Warm, modern living room"
           className="absolute inset-0 w-full h-full object-cover"
         />

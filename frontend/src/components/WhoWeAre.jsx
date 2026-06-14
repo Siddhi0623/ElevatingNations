@@ -5,7 +5,7 @@ export default function WhoWeAre() {
       <div className="lg:w-[45%] relative overflow-hidden min-h-[320px] lg:min-h-full">
         <div className="absolute inset-0 bg-[#E8DFD0]" />
         <img
-          src="/images/who-we-are.png"
+          src="/images/who-we-are.webp"
           alt="Mother and child"
           className="absolute inset-0 w-full h-full object-cover"
         />

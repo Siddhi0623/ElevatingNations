@@ -148,7 +148,7 @@ export default function Contact() {
         <div className="lg:w-[28%] relative overflow-hidden min-h-[280px] lg:min-h-full">
           <div className="absolute inset-0 bg-[#E8DFD0]" />
           <img
-            src="/images/contact-corner.png"
+            src="/images/contact-corner.webp"
             alt="Warm interior corner"
             className="absolute inset-0 w-full h-full object-cover"
           />

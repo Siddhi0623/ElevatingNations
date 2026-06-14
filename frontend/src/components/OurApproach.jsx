@@ -25,7 +25,7 @@ export default function OurApproach() {
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-[#5C5940]" />
           <img
-            src="/images/door.png"
+            src="/images/door.webp"
             alt="Bright doorway interior"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -33,7 +33,7 @@ export default function OurApproach() {
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-[#4A4830]" />
           <img
-            src="/images/door.png"
+            src="/images/door.webp"
             alt="Calm interior space"
             className="absolute inset-0 w-full h-full object-cover object-left"
           />
