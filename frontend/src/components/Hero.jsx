@@ -8,7 +8,7 @@ export default function Hero() {
         src="/images/hero-living-room.webp"
         alt="Warm, modern living room"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: 'center 65%' }}
+        style={{ objectPosition: 'right 65%' }}
       />
 
       {/* Gradient overlay — solid cream on left where text is, sharp fade to clear on right */}
