@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden -mt-[88px] pt-[88px]">
 
       {/* Full-width background image */}
       <div className="absolute inset-0 bg-[#E8DDD0]" />

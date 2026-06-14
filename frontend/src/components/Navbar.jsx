@@ -91,7 +91,7 @@ export default function Navbar() {
     }`
 
   return (
-    <nav className="bg-cream sticky top-0 z-50">
+    <nav className="sticky top-0 z-50 bg-cream/60 backdrop-blur-[6px]">
       <div className="max-w-7xl mx-auto px-8 lg:px-16 flex items-center justify-between h-[88px]">
 
         {/* Logo → always goes home */}
