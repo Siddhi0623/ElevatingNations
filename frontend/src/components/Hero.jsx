@@ -10,11 +10,11 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Gradient overlay — opaque cream on the left, fades to transparent on the right */}
+      {/* Gradient overlay — solid cream on left where text is, sharp fade to clear on right */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to right, #F7F3EC 0%, #F7F3EC 42%, rgba(247,243,236,0.85) 58%, rgba(247,243,236,0) 75%)',
+          background: 'linear-gradient(to right, #F7F3EC 0%, #F7F3EC 36%, rgba(247,243,236,0.7) 46%, rgba(247,243,236,0.15) 56%, rgba(247,243,236,0) 64%)',
         }}
       />
 
