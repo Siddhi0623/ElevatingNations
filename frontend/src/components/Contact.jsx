@@ -146,19 +146,9 @@ export default function Contact() {
 
         {/* Right – image */}
         <div className="lg:w-[28%] relative overflow-hidden min-h-[280px] lg:min-h-full">
-          <div className="absolute inset-0 bg-[#E8DFD0] flex items-center justify-center text-center p-6">
-            <div>
-              <p className="text-[#8B7355] text-xs font-medium">Contact Section Image</p>
-              <code className="text-[#8B7355] text-[10px] opacity-70 block mt-1">
-                public/images/contact-corner.jpg
-              </code>
-              <p className="text-[#8B7355] text-[10px] opacity-60 mt-1">
-                Interior corner with plant / warm tones
-              </p>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-[#E8DFD0]" />
           <img
-            src="/images/contact-corner.jpg"
+            src="/images/contact-corner.png"
             alt="Warm interior corner"
             className="absolute inset-0 w-full h-full object-cover"
           />

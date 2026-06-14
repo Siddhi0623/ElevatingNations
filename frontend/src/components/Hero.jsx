@@ -10,7 +10,6 @@ export default function Hero() {
             Fresh starts.
           </h1>
 
-          {/* Gold divider */}
           <div className="w-10 h-0.5 bg-gold mb-7" />
 
           <p className="text-gray-500 text-sm leading-relaxed mb-10 max-w-sm">
@@ -26,35 +25,9 @@ export default function Hero() {
 
       {/* Right – image */}
       <div className="lg:flex-1 min-h-[50vh] lg:min-h-full relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#E8DDD0]" />
         <img
-          src="/images/hero-living-room.jpg"
-          alt="Warm, modern living room"
-          className="absolute inset-0 w-full h-full object-cover"
-          onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-        />
-        {/* Placeholder shown if image is missing */}
-        <div
-          className="absolute inset-0 bg-[#E8DFD0] hidden items-center justify-center text-center p-8"
-          style={{ display: 'none' }}
-        >
-          <p className="text-gray-500 text-sm">
-            <span className="block text-2xl mb-2">🏠</span>
-            Place your hero image here<br />
-            <code className="text-xs mt-1 block text-gray-400">public/images/hero-living-room.jpg</code>
-            <span className="text-xs block mt-1 text-gray-400">Recommended: bright, modern living room in warm neutral tones</span>
-          </p>
-        </div>
-        {/* Fallback gradient background always visible */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#EFE8DA] via-[#E8DDD0] to-[#D4C9B8] flex items-center justify-center">
-          <div className="text-center p-8">
-            <p className="text-[#8B7355] text-sm font-medium mb-1">Hero Image Placeholder</p>
-            <p className="text-[#8B7355] text-xs opacity-70">Replace with your image at:</p>
-            <code className="text-[#8B7355] text-xs opacity-70">public/images/hero-living-room.jpg</code>
-          </div>
-        </div>
-        {/* Actual image overlays the placeholder */}
-        <img
-          src="/images/hero-living-room.jpg"
+          src="/images/hero-living-room.png"
           alt="Warm, modern living room"
           className="absolute inset-0 w-full h-full object-cover"
         />

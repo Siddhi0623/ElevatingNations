@@ -1,14 +1,3 @@
-function ImgPlaceholder({ label, filename }) {
-  return (
-    <div className="w-full h-full bg-[#5C5940] flex items-center justify-center text-center p-4 min-h-[200px]">
-      <div>
-        <p className="text-[#C4A96A] text-xs font-medium">{label}</p>
-        <code className="text-[#C4A96A] text-[10px] opacity-70 block mt-1">{filename}</code>
-      </div>
-    </div>
-  )
-}
-
 export default function OurApproach() {
   return (
     <section id="work-with-us" className="bg-olive flex flex-col lg:flex-row min-h-[520px]">
@@ -31,34 +20,22 @@ export default function OurApproach() {
         </div>
       </div>
 
-      {/* Right – two images */}
+      {/* Right – two image panels */}
       <div className="lg:w-[50%] grid grid-cols-2 min-h-[380px] lg:min-h-full">
-        {/* Image 1 */}
         <div className="relative overflow-hidden">
-          <div className="absolute inset-0">
-            <ImgPlaceholder
-              label="Approach Image 1"
-              filename="public/images/approach-1.jpg"
-            />
-          </div>
+          <div className="absolute inset-0 bg-[#5C5940]" />
           <img
-            src="/images/approach-1.jpg"
+            src="/images/door.png"
             alt="Bright doorway interior"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
-        {/* Image 2 */}
         <div className="relative overflow-hidden">
-          <div className="absolute inset-0">
-            <ImgPlaceholder
-              label="Approach Image 2"
-              filename="public/images/approach-2.jpg"
-            />
-          </div>
+          <div className="absolute inset-0 bg-[#4A4830]" />
           <img
-            src="/images/approach-2.jpg"
+            src="/images/door.png"
             alt="Calm interior space"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-left"
           />
         </div>
       </div>

@@ -1,29 +1,11 @@
-function ImagePlaceholder({ label, filename, hint }) {
-  return (
-    <div className="w-full h-full bg-[#E8DFD0] flex items-center justify-center text-center p-8 min-h-[320px]">
-      <div>
-        <p className="text-[#8B7355] text-sm font-medium mb-1">{label}</p>
-        <code className="text-[#8B7355] text-xs opacity-70 block">{filename}</code>
-        {hint && <p className="text-[#8B7355] text-xs opacity-60 mt-1">{hint}</p>}
-      </div>
-    </div>
-  )
-}
-
 export default function WhoWeAre() {
   return (
     <section id="about-us" className="bg-cream flex flex-col lg:flex-row min-h-[420px]">
       {/* Left – image */}
       <div className="lg:w-[45%] relative overflow-hidden min-h-[320px] lg:min-h-full">
-        <div className="absolute inset-0">
-          <ImagePlaceholder
-            label="Who We Are Image Placeholder"
-            filename="public/images/who-we-are.jpg"
-            hint="Mother and child looking out window, warm tones"
-          />
-        </div>
+        <div className="absolute inset-0 bg-[#E8DFD0]" />
         <img
-          src="/images/who-we-are.jpg"
+          src="/images/who-we-are.png"
           alt="Mother and child"
           className="absolute inset-0 w-full h-full object-cover"
         />
