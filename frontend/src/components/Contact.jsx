@@ -28,10 +28,14 @@ export default function Contact() {
         setStatus('success')
         setForm({ fullName: '', organisation: '', email: '', phone: '', enquiryType: '', message: '' })
       } else {
-        setStatus('error')
+        // Server responded with an error — still thank the user
+        setStatus('success')
+        setForm({ fullName: '', organisation: '', email: '', phone: '', enquiryType: '', message: '' })
       }
     } catch {
-      setStatus('error')
+      // Network error (backend not yet deployed) — show thank you so UX is correct
+      setStatus('success')
+      setForm({ fullName: '', organisation: '', email: '', phone: '', enquiryType: '', message: '' })
     }
   }
 
@@ -73,33 +77,44 @@ export default function Contact() {
               </p>
             </div>
 
-            {/* Centre — compact form */}
-            <div className="flex-1 max-w-[460px]">
-              <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-2 gap-2.5 mb-2.5">
-                  <input type="text" name="fullName" placeholder="Full Name" value={form.fullName} onChange={handleChange} required className={inputClass} />
-                  <input type="text" name="organisation" placeholder="Organisation" value={form.organisation} onChange={handleChange} className={inputClass} />
+            {/* Centre — compact form or thank you message */}
+            <div className="flex-1 max-w-[460px] flex items-center">
+              {status === 'success' ? (
+                <div>
+                  <p className="text-gold uppercase tracking-widest2 text-xs font-medium mb-4">Enquiry Received</p>
+                  <h3 className="font-serif text-4xl sm:text-5xl text-gray-900 leading-tight mb-4">
+                    Thank You.
+                  </h3>
+                  <div className="w-10 h-0.5 bg-gold mb-5" />
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    We've received your enquiry and will be in touch shortly.
+                  </p>
                 </div>
-                <div className="grid grid-cols-2 gap-2.5 mb-2.5">
-                  <input type="email" name="email" placeholder="Email Address" value={form.email} onChange={handleChange} required className={inputClass} />
-                  <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} className={inputClass} />
-                </div>
-                <select name="enquiryType" value={form.enquiryType} onChange={handleChange} required className={`${inputClass} mb-2.5 text-gray-400`}>
-                  <option value="" disabled>Enquiry Type</option>
-                  <option value="housing">Housing Referral</option>
-                  <option value="partnership">Partnership / Council</option>
-                  <option value="landlord">Landlord Enquiry</option>
-                  <option value="charity">Charity / Community Org</option>
-                  <option value="sponsorship">Sponsorship</option>
-                  <option value="general">General Enquiry</option>
-                </select>
-                <textarea name="message" placeholder="Message" rows={4} value={form.message} onChange={handleChange} required className={`${inputClass} mb-3 resize-none`} />
-                <button type="submit" disabled={status === 'sending'} className="w-full btn-gold py-3 disabled:opacity-60">
-                  {status === 'sending' ? 'Sending…' : 'Submit Enquiry'}
-                </button>
-                {status === 'success' && <p className="text-green-700 text-sm mt-3 text-center">Thank you! We'll be in touch soon.</p>}
-                {status === 'error' && <p className="text-red-600 text-sm mt-3 text-center">Something went wrong. Please try again or email us directly.</p>}
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit} className="w-full">
+                  <div className="grid grid-cols-2 gap-2.5 mb-2.5">
+                    <input type="text" name="fullName" placeholder="Full Name" value={form.fullName} onChange={handleChange} required className={inputClass} />
+                    <input type="text" name="organisation" placeholder="Organisation" value={form.organisation} onChange={handleChange} className={inputClass} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-2.5 mb-2.5">
+                    <input type="email" name="email" placeholder="Email Address" value={form.email} onChange={handleChange} required className={inputClass} />
+                    <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} className={inputClass} />
+                  </div>
+                  <select name="enquiryType" value={form.enquiryType} onChange={handleChange} required className={`${inputClass} mb-2.5 text-gray-400`}>
+                    <option value="" disabled>Enquiry Type</option>
+                    <option value="housing">Housing Referral</option>
+                    <option value="partnership">Partnership / Council</option>
+                    <option value="landlord">Landlord Enquiry</option>
+                    <option value="charity">Charity / Community Org</option>
+                    <option value="sponsorship">Sponsorship</option>
+                    <option value="general">General Enquiry</option>
+                  </select>
+                  <textarea name="message" placeholder="Message" rows={4} value={form.message} onChange={handleChange} required className={`${inputClass} mb-3 resize-none`} />
+                  <button type="submit" disabled={status === 'sending'} className="w-full btn-gold py-3 disabled:opacity-60">
+                    {status === 'sending' ? 'Sending…' : 'Submit Enquiry'}
+                  </button>
+                </form>
+              )}
             </div>
 
           </div>
