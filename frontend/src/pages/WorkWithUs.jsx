@@ -3,10 +3,38 @@ import Contact from '../components/Contact'
 /* ─── Hero banner ─────────────────────────────────────────────────── */
 function WWUHero() {
   return (
-    <section className="bg-cream min-h-screen flex flex-col lg:flex-row">
-      {/* Left – text */}
-      <div className="flex-1 flex items-center px-8 sm:px-16 lg:px-24 py-24 lg:py-0 lg:max-w-[55%]">
-        <div className="max-w-xl">
+    <section className="relative min-h-screen flex items-center overflow-hidden -mt-[88px] pt-[88px]">
+
+      {/* Cream base so no flash before image loads */}
+      <div className="absolute inset-0 bg-cream" />
+
+      {/* Full-section background image — covers edge to edge with no white gaps */}
+      <img
+        src="/images/hero-updated.webp"
+        alt="Work with us"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: 'center center' }}
+      />
+
+      {/* Small patch to cover the AI watermark in the bottom-right corner */}
+      <div
+        className="absolute bottom-0 right-0 w-28 h-28 z-10"
+        style={{
+          background: 'radial-gradient(circle at 90% 90%, rgba(210,198,182,1) 0%, rgba(210,198,182,0.7) 40%, rgba(210,198,182,0) 70%)',
+        }}
+      />
+
+      {/* Left-to-right gradient overlay: strong white behind text, fades to near-clear on right */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 18%, rgba(255,255,255,0.55) 40%, rgba(255,255,255,0.20) 60%, rgba(255,255,255,0.10) 75%, rgba(255,255,255,0.05) 85%)',
+        }}
+      />
+
+      {/* Text content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 sm:px-12 lg:px-20 py-24 lg:py-0">
+        <div className="max-w-[600px]">
           <p className="text-gold uppercase tracking-widest2 text-xs font-medium mb-5">Work With Us</p>
           <h1 className="font-serif text-5xl sm:text-6xl lg:text-[4rem] leading-[1.1] text-gray-900 mb-5">
             Partner with us<br />to make a<br />difference.
@@ -18,32 +46,15 @@ function WWUHero() {
         </div>
       </div>
 
-      {/* Right – image panel */}
-      <div className="lg:flex-1 min-h-[50vh] lg:min-h-full relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#EFE8DA] via-[#E8DDD0] to-[#D4C9B8] flex items-center justify-center">
-          <div className="text-center p-8">
-            <p className="text-[#8B7355] text-sm font-medium mb-1">Work With Us — Hero Image</p>
-            <code className="text-[#8B7355] text-xs opacity-70">public/images/work-with-us-hero.jpg</code>
-          </div>
-        </div>
-        <img
-          src="/images/work-with-us-hero.jpg"
-          alt="Work with us"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
     </section>
   )
 }
 
 /* ─── Who We Work With ────────────────────────────────────────────── */
 const partners = [
-  { title: 'Local Councils & Authorities', img: '/images/partner-councils.jpg',    placeholder: 'bg-[#C8BFB0]' },
-  { title: 'Charities & Nonprofits',       img: '/images/partner-charities.jpg',   placeholder: 'bg-[#B8C0B0]' },
-  { title: 'Landlords & Property Owners',  img: '/images/partner-landlords.jpg',   placeholder: 'bg-[#C0B8A8]' },
-  { title: 'Referral Organisations',       img: '/images/partner-referrals.jpg',   placeholder: 'bg-[#B0BAC0]' },
-  { title: 'Sponsors & Funders',           img: '/images/partner-sponsors.jpg',    placeholder: 'bg-[#C4B8A8]' },
-  { title: 'Community Organisations',      img: '/images/partner-community.jpg',   placeholder: 'bg-[#B8C4B8]' },
+  { title: 'Local Councils & Authorities', img: '/images/who-we-are-1.webp', placeholder: 'bg-[#C8BFB0]' },
+  { title: 'Charities & Nonprofits',       img: '/images/who-we-are-2.webp', placeholder: 'bg-[#B8C0B0]' },
+  { title: 'Landlords & Property Owners',  img: '/images/who-we-are-3.webp', placeholder: 'bg-[#C0B8A8]' },
 ]
 
 function WhoWeWorkWith() {
@@ -121,9 +132,29 @@ function HowItWorks() {
 /* ─── Our Commitment ──────────────────────────────────────────────── */
 function OurCommitment() {
   return (
-    <section className="bg-olive min-h-[340px] flex flex-col lg:flex-row">
-      {/* Left – text */}
-      <div className="lg:w-[55%] flex items-center px-8 sm:px-14 lg:px-20 py-14 lg:py-20">
+    <section className="relative min-h-[340px] flex items-center overflow-hidden">
+
+      {/* Dark base fallback */}
+      <div className="absolute inset-0 bg-olive" />
+
+      {/* Full-width background image */}
+      <img
+        src="/images/commitment.webp"
+        alt="Our commitment"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: 'center center' }}
+      />
+
+      {/* Left-to-right dark overlay: opaque behind text, clears on right so image stays sharp */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, rgba(73,72,58,0.88) 0%, rgba(73,72,58,0.82) 20%, rgba(73,72,58,0.60) 40%, rgba(73,72,58,0.25) 58%, rgba(73,72,58,0.05) 72%, rgba(73,72,58,0) 80%)',
+        }}
+      />
+
+      {/* Text content */}
+      <div className="relative z-10 w-full px-8 sm:px-14 lg:px-20 py-14 lg:py-20">
         <div className="max-w-lg">
           <p className="text-gold uppercase tracking-widest2 text-xs font-medium mb-5">Our Commitment</p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.4rem] leading-snug text-white mb-6">
@@ -141,20 +172,6 @@ function OurCommitment() {
         </div>
       </div>
 
-      {/* Right – image */}
-      <div className="lg:w-[45%] relative overflow-hidden min-h-[280px] lg:min-h-full">
-        <div className="absolute inset-0 bg-[#5C5940] flex items-center justify-center text-center p-6">
-          <div>
-            <p className="text-[#C4A96A] text-xs font-medium">Commitment Image</p>
-            <code className="text-[#C4A96A] text-[10px] opacity-70 block mt-1">public/images/commitment.jpg</code>
-          </div>
-        </div>
-        <img
-          src="/images/commitment.jpg"
-          alt="Our commitment"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
     </section>
   )
 }
