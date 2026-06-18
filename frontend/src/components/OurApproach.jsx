@@ -1,8 +1,25 @@
 export default function OurApproach() {
   return (
-    <section id="work-with-us" className="bg-olive flex flex-col lg:flex-row min-h-[520px]">
-      {/* Left – text */}
-      <div className="lg:w-[50%] flex items-center px-8 sm:px-14 lg:px-20 py-16 lg:py-24">
+    <section id="work-with-us" className="relative min-h-[520px] flex items-center overflow-hidden">
+
+      {/* Full-width background image */}
+      <div className="absolute inset-0 bg-[#5C5940]" />
+      <img
+        src="/images/door.webp"
+        alt="Bright doorway interior"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Gradient overlay — solid olive on left where text is, fading to clear image on right */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, #49483A 0%, #49483A 32%, rgba(73,72,58,0.88) 42%, rgba(73,72,58,0.45) 54%, rgba(73,72,58,0) 66%)',
+        }}
+      />
+
+      {/* Text content */}
+      <div className="relative z-10 w-full px-8 sm:px-14 lg:px-20 py-16 lg:py-24">
         <div className="max-w-md">
           <p className="text-gold uppercase tracking-widest2 text-xs font-medium mb-5">Our Approach</p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.6rem] leading-snug text-white mb-6">
@@ -13,32 +30,13 @@ export default function OurApproach() {
           </p>
           <a
             href="#contact"
-            className="inline-block border border-gold text-gold uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gold hover:text-white transition-colors duration-200"
+            className="inline-block btn-gold"
           >
             Our Approach
           </a>
         </div>
       </div>
 
-      {/* Right – two image panels */}
-      <div className="lg:w-[50%] grid grid-cols-2 min-h-[380px] lg:min-h-full">
-        <div className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[#5C5940]" />
-          <img
-            src="/images/door.webp"
-            alt="Bright doorway interior"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
-        <div className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[#4A4830]" />
-          <img
-            src="/images/door.webp"
-            alt="Calm interior space"
-            className="absolute inset-0 w-full h-full object-cover object-left"
-          />
-        </div>
-      </div>
     </section>
   )
 }
