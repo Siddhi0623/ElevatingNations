@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom'
+import { scrollToSection } from '../utils/scroll'
+
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden -mt-[88px] pt-[88px]">
@@ -35,8 +38,14 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a href="#work-with-us" className="btn-gold">Work With Us</a>
-            <a href="#contact" className="btn-outline">Contact Us</a>
+            <Link to="/work-with-us" className="btn-gold">Work With Us</Link>
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollToSection('contact') }}
+              className="btn-outline"
+            >
+              Contact Us
+            </a>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { scrollToSection } from '../utils/scroll'
+
 export default function WhoWeAre() {
   return (
     <section id="about-us" className="bg-cream flex flex-col lg:flex-row min-h-[420px]">
@@ -21,7 +23,13 @@ export default function WhoWeAre() {
           <p className="text-gray-500 text-sm leading-relaxed mb-7">
             Our aim is to create safe, stable, and dignified housing solutions that help individuals and families rebuild with confidence, independence, and long-term stability.
           </p>
-          <a href="#what-we-do" className="btn-gold inline-block">Learn More</a>
+          <a
+            href="#what-we-do"
+            onClick={(e) => { e.preventDefault(); scrollToSection('what-we-do') }}
+            className="btn-gold inline-block"
+          >
+            Learn More
+          </a>
         </div>
       </div>
     </section>

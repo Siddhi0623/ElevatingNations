@@ -2,6 +2,7 @@ import Hero from '../components/Hero'
 import WhoWeAre from '../components/WhoWeAre'
 import WhatWeProvide from '../components/WhatWeProvide'
 import OurApproach from '../components/OurApproach'
+import BookingCalendar from '../components/BookingCalendar'
 import Contact from '../components/Contact'
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <WhoWeAre />
       <WhatWeProvide />
       <OurApproach />
+      <BookingCalendar />
       <Contact />
     </>
   )

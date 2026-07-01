@@ -1,3 +1,5 @@
+import { scrollToSection } from '../utils/scroll'
+
 export default function OurApproach() {
   return (
     <section id="work-with-us" className="relative min-h-[520px] flex items-center overflow-hidden">
@@ -30,9 +32,10 @@ export default function OurApproach() {
           </p>
           <a
             href="#contact"
+            onClick={(e) => { e.preventDefault(); scrollToSection('contact') }}
             className="inline-block btn-gold"
           >
-            Our Approach
+            Get In Touch
           </a>
         </div>
       </div>

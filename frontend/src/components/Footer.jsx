@@ -79,16 +79,24 @@ export default function Footer() {
         <div className="md:w-[28%] flex justify-end">
           {/* Inner block is left-aligned so icons + text stay consistent */}
           <div className="flex flex-col gap-2.5">
-            {[
-              { icon: <InstagramIcon />, text: <span className="text-gray-700">@elevatingnationscic</span> },
-              { icon: <FacebookIcon />,  text: <span className="text-gray-500">Facebook: <span className="italic text-gray-400">Launching soon</span></span> },
-              { icon: <LinkedInIcon />,  text: <span className="text-gray-500">LinkedIn: <span className="italic text-gray-400">Launching soon</span></span> },
-            ].map(({ icon, text }, i) => (
-              <div key={i} className="flex items-center gap-2 text-[13px]">
-                <span className="flex items-center justify-center w-[22px] h-[22px] shrink-0">{icon}</span>
-                {text}
-              </div>
-            ))}
+            <a
+              href="https://instagram.com/elevatingnationscic"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[13px] text-gray-700 hover:text-gold transition-colors duration-200"
+              aria-label="Elevating Nations CIC on Instagram"
+            >
+              <span className="flex items-center justify-center w-[22px] h-[22px] shrink-0"><InstagramIcon /></span>
+              @elevatingnationscic
+            </a>
+            <div className="flex items-center gap-2 text-[13px]">
+              <span className="flex items-center justify-center w-[22px] h-[22px] shrink-0"><FacebookIcon /></span>
+              <span className="text-gray-500">Facebook: <span className="italic text-gray-400">Launching soon</span></span>
+            </div>
+            <div className="flex items-center gap-2 text-[13px]">
+              <span className="flex items-center justify-center w-[22px] h-[22px] shrink-0"><LinkedInIcon /></span>
+              <span className="text-gray-500">LinkedIn: <span className="italic text-gray-400">Launching soon</span></span>
+            </div>
           </div>
         </div>
 

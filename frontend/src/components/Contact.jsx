@@ -100,7 +100,7 @@ export default function Contact() {
                     <input type="email" name="email" placeholder="Email Address" value={form.email} onChange={handleChange} required className={inputClass} />
                     <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} className={inputClass} />
                   </div>
-                  <select name="enquiryType" value={form.enquiryType} onChange={handleChange} required className={`${inputClass} mb-2.5 text-gray-400`}>
+                  <select name="enquiryType" value={form.enquiryType} onChange={handleChange} required className={`${inputClass} mb-2.5 ${form.enquiryType ? 'text-gray-700' : 'text-gray-400'}`}>
                     <option value="" disabled>Enquiry Type</option>
                     <option value="housing">Housing Referral</option>
                     <option value="partnership">Partnership / Council</option>

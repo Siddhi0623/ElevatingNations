@@ -32,6 +32,7 @@ const navItems = [
   { label: 'What We Do',   scrollTo: 'what-we-do' },
   { label: 'Work With Us', route: '/work-with-us' },
   { label: 'Contact',      scrollTo: 'contact' },
+  { label: 'Book a Call',  scrollTo: 'booking', cta: true },
 ]
 
 export default function Navbar() {
@@ -103,18 +104,29 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
             <li key={item.label}>
-              <a href="#" onClick={handleClick(item)} className={linkClass(item)}>
-                {item.label}
-              </a>
+              {item.cta ? (
+                <a
+                  href="#"
+                  onClick={handleClick(item)}
+                  className="btn-gold py-2.5 px-5 text-[10px]"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <a href="#" onClick={handleClick(item)} className={linkClass(item)}>
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileOpen}
         >
           <span className={`block w-6 h-0.5 bg-gray-800 transition-all ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
           <span className={`block w-6 h-0.5 bg-gray-800 transition-all ${mobileOpen ? 'opacity-0' : ''}`} />
@@ -130,8 +142,10 @@ export default function Navbar() {
               key={item.label}
               href="#"
               onClick={handleClick(item)}
-              className={`block py-3 uppercase tracking-[0.18em] text-xs font-semibold border-b border-gray-100 ${
-                isActive(item) && (item.scrollTo === 'home' || item.route)
+              className={`block py-3 uppercase tracking-[0.18em] text-xs font-semibold border-b border-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
+                item.cta
+                  ? 'text-gold'
+                  : isActive(item) && (item.scrollTo === 'home' || item.route)
                   ? 'text-gold'
                   : 'text-gray-700 hover:text-gold'
               }`}

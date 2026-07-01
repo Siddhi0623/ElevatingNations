@@ -14,11 +14,11 @@
 
 @layer utilities {
   .btn-gold {
-    @apply bg-gold text-white uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gold-dark transition-colors duration-200;
+    @apply bg-gold text-white uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gold-dark active:scale-[0.97] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
   }
 
   .btn-outline {
-    @apply border border-gray-800 text-gray-800 uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gray-100 transition-colors duration-200;
+    @apply border border-gray-800 text-gray-800 uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gray-100 active:scale-[0.97] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-800 focus-visible:ring-offset-2;
   }
 
   .label-gold {

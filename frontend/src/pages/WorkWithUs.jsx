@@ -1,4 +1,5 @@
 import Contact from '../components/Contact'
+import { scrollToSection } from '../utils/scroll'
 
 /* ─── Hero banner ─────────────────────────────────────────────────── */
 function WWUHero() {
@@ -165,7 +166,8 @@ function OurCommitment() {
           </p>
           <a
             href="#contact"
-            className="inline-block border border-gold text-gold uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gold hover:text-white transition-colors duration-200"
+            onClick={(e) => { e.preventDefault(); scrollToSection('contact') }}
+            className="inline-block border border-gold text-gold uppercase tracking-widest text-xs px-7 py-3.5 hover:bg-gold hover:text-white active:scale-[0.97] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
             Start a Conversation
           </a>
