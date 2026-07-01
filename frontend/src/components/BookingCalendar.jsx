@@ -6,16 +6,9 @@ const MONTH_NAMES = [
 ]
 const DAY_LABELS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
 
-const TIME_SLOTS = [
-  '10:00 AM','10:30 AM','11:00 AM','11:30 AM',
-  '12:00 PM','12:30 PM','1:00 PM', '1:30 PM',
-  '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM',
-]
-
 function buildGrid(year, month) {
   const firstDay = new Date(year, month, 1)
   const lastDate = new Date(year, month + 1, 0).getDate()
-  // Monday-first: (getDay()+6)%7 maps Sun→6, Mon→0, Sat→5
   const startOffset = (firstDay.getDay() + 6) % 7
   const cells = Array(startOffset).fill(null)
   for (let d = 1; d <= lastDate; d++) cells.push(new Date(year, month, d))
@@ -32,7 +25,7 @@ function todayMidnight() {
 function selectable(date) {
   if (!date) return false
   if (date < todayMidnight()) return false
-  return date.getDay() !== 0 // block Sunday
+  return date.getDay() !== 0
 }
 
 function sameDay(a, b) {
@@ -43,6 +36,15 @@ function fmtLong(date) {
   return date.toLocaleDateString('en-GB', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
+}
+
+/* Convert 24h "HH:MM" → display string like "2:30 PM" */
+function fmtTime(val) {
+  if (!val) return ''
+  const [h, m] = val.split(':').map(Number)
+  const period = h >= 12 ? 'PM' : 'AM'
+  const hour = h % 12 || 12
+  return `${hour}:${String(m).padStart(2, '0')} ${period}`
 }
 
 const INPUT =
@@ -64,8 +66,8 @@ export default function BookingCalendar() {
   const [year, setYear] = useState(now.getFullYear())
   const [month, setMonth] = useState(now.getMonth())
   const [pickedDate, setPickedDate] = useState(null)
-  const [pickedTime, setPickedTime] = useState(null)
-  const [step, setStep] = useState('pick') // 'pick' | 'form' | 'done'
+  const [timeVal, setTimeVal] = useState('')   // "HH:MM" (24h)
+  const [step, setStep] = useState('pick')     // 'pick' | 'form' | 'done'
   const [form, setForm] = useState({ name: '', email: '', note: '' })
   const [busy, setBusy] = useState(false)
 
@@ -85,18 +87,23 @@ export default function BookingCalendar() {
   const pickDate = (d) => {
     if (!selectable(d)) return
     setPickedDate(d)
-    setPickedTime(null)
+    setTimeVal('')
   }
-  const pickTime = (t) => {
-    setPickedTime(t)
-    setStep('form')
+
+  const handleContinue = () => {
+    if (pickedDate && timeVal) setStep('form')
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setBusy(true)
     setTimeout(() => { setBusy(false); setStep('done') }, 900)
   }
-  const goBack = () => { setStep('pick'); setPickedTime(null) }
+
+  const goBack = () => { setStep('pick') }
+
+  const pickedTimeDisplay = fmtTime(timeVal)
+  const canContinue = !!pickedDate && !!timeVal
 
   const navBtn = [
     'w-8 h-8 flex items-center justify-center rounded text-gray-400 transition-colors duration-150',
@@ -116,7 +123,7 @@ export default function BookingCalendar() {
             Your free consultation has been scheduled for:
           </p>
           <p className="font-serif text-xl text-gray-900 mb-1">{fmtLong(pickedDate)}</p>
-          <p className="text-gold font-medium text-sm mb-6">{pickedTime} · Europe / London</p>
+          <p className="text-gold font-medium text-sm mb-6">{pickedTimeDisplay} · Europe / London</p>
           <p className="text-gray-400 text-sm">
             A confirmation will be sent to{' '}
             <span className="text-gray-600">{form.email}</span>.
@@ -137,7 +144,7 @@ export default function BookingCalendar() {
             <div className="mb-5 pb-5 border-b border-gray-100">
               <p className="text-[10px] uppercase tracking-widest2 text-gold font-medium mb-1">Your appointment</p>
               <p className="font-serif text-base text-gray-900">{fmtLong(pickedDate)}</p>
-              <p className="text-gold text-sm mt-0.5">{pickedTime} · Europe / London</p>
+              <p className="text-gold text-sm mt-0.5">{pickedTimeDisplay} · Europe / London</p>
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
               <input
@@ -198,15 +205,14 @@ export default function BookingCalendar() {
           <div className="w-8 h-0.5 bg-gold mx-auto mb-5" />
           <p className="text-gray-500 text-sm leading-relaxed max-w-sm mx-auto">
             Available Monday – Saturday, 10 am – 4 pm (London time).
-            Select a date to see available times.
+            Select a date and your preferred time.
           </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6 justify-center items-start">
 
-          {/* Calendar card */}
+          {/* ── Calendar ── */}
           <div className="bg-white/70 border border-gray-200/60 p-6 w-full lg:w-[380px] shrink-0">
-
             {/* Month navigation */}
             <div className="flex items-center justify-between mb-5">
               <button
@@ -271,31 +277,52 @@ export default function BookingCalendar() {
             </p>
           </div>
 
-          {/* Time slots card — appears after date selection */}
-          {pickedDate && (
-            <div className="bg-white/70 border border-gray-200/60 p-6 w-full lg:w-[260px] shrink-0">
-              <p className="text-[10px] uppercase tracking-widest2 text-gold font-medium mb-1">
-                Selected Date
-              </p>
-              <h3 className="font-serif text-base text-gray-900 mb-4 leading-snug">
-                {fmtLong(pickedDate)}
-              </h3>
-              <p className="text-gray-400 text-[10px] uppercase tracking-wider mb-3">
-                Available Times
-              </p>
-              <div className="flex flex-col gap-1.5">
-                {TIME_SLOTS.map(t => (
-                  <button
-                    key={t}
-                    onClick={() => pickTime(t)}
-                    className="w-full border border-gray-200 py-2 px-3 text-sm text-gray-700 text-left transition-colors duration-150 hover:border-gold hover:text-gold hover:bg-gold/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                  >
-                    {t}
-                  </button>
-                ))}
-              </div>
+          {/* ── Time picker — always visible ── */}
+          <div className="bg-white/70 border border-gray-200/60 p-6 w-full lg:w-[280px] shrink-0 flex flex-col">
+            <p className="text-[10px] uppercase tracking-widest2 text-gold font-medium mb-1">
+              Select a Time
+            </p>
+            <h3 className="font-serif text-base text-gray-900 mb-1 leading-snug">
+              {pickedDate ? fmtLong(pickedDate) : 'Choose a date first'}
+            </h3>
+            <p className="text-gray-400 text-[11px] mb-5">
+              {pickedDate ? 'Enter any time between 10:00 AM – 4:00 PM' : 'Pick a date from the calendar to select a time.'}
+            </p>
+
+            {/* Native time input — full flexibility */}
+            <div className="relative mb-5">
+              <input
+                type="time"
+                min="10:00"
+                max="16:00"
+                step="900"
+                value={timeVal}
+                disabled={!pickedDate}
+                onChange={e => setTimeVal(e.target.value)}
+                aria-label="Preferred time (10:00 AM to 4:00 PM)"
+                className={[
+                  'w-full border px-3 py-3 text-sm outline-none transition-colors duration-200 bg-white',
+                  'focus:border-gold focus:ring-1 focus:ring-gold/30',
+                  pickedDate
+                    ? 'border-gray-200 text-gray-700 cursor-pointer'
+                    : 'border-gray-100 text-gray-300 cursor-not-allowed bg-gray-50',
+                ].join(' ')}
+              />
+              {timeVal && (
+                <p className="text-gold text-xs mt-2 font-medium">
+                  Selected: {pickedTimeDisplay} · Europe / London
+                </p>
+              )}
             </div>
-          )}
+
+            <button
+              onClick={handleContinue}
+              disabled={!canContinue}
+              className="btn-gold py-3 w-full disabled:opacity-40 disabled:cursor-not-allowed mt-auto"
+            >
+              Continue to Booking
+            </button>
+          </div>
 
         </div>
       </div>
